@@ -19,6 +19,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.Use(async (context, next) =>
+{
+    var claims = new[] { new System.Security.Claims.Claim("role", "Admin") };
+    var identity = new System.Security.Claims.ClaimsIdentity(claims, "Test");
+    context.User = new System.Security.Claims.ClaimsPrincipal(identity);
+    await next();
+});
+
+// Registrar el middleware de control de acceso basado en roles
+app.UseMiddleware<RoleBasedAccessMiddleware>();
+
 // Registrar el middleware de manejo de errores (debe ir antes que otros middlewares)
 app.UseMiddleware<ErrorHandlingMiddleware>();
 

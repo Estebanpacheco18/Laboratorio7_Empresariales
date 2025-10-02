@@ -10,8 +10,7 @@ namespace Lab07_EstebanPacheco.Controller
         [HttpPost]
         public IActionResult CreateProduct([FromBody] CreateProductDto product)
         {
-            throw new Exception("Error al crear el producto (es prueba).");
-            // return Ok(new { message = "Producto creado exitosamente." });
+            return Ok(new { message = "Producto creado exitosamente." });
         }
     }
 }
