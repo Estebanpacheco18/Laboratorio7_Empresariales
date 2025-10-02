@@ -19,6 +19,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Registrar el middleware de manejo de errores (debe ir antes que otros middlewares)
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 // Registrar el middleware de validación de parámetros
 app.UseMiddleware<ParameterValidationMiddleware>();
 
